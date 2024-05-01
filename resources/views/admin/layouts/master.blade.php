@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="description" content="{{ config('settings.seo_description') }}">
+    <meta name="keywords" content="{{ config('settings.seo_keywords') }}">
+
+    <link rel="icon" type="image/png" href="{{ asset(config('settings.favicon')) }}">
+
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/modules/fontawesome/css/all.min.css') }}">
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/components.css') }}">
+    <!--- Color CSS ---->
+    <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('frontend/css/toastr.min.css') }}">
+
+    <link rel="stylesheet" href="//cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
+
+    <title>Control Panel &mdash; {{ config('settings.seo_title') }}</title>
+
+    <!-- Start GA -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-94034622-3');
+    </script>
+    <!-- /END GA -->
+
+</head>
+
+<body>
+    <div id="app">
+        <div class="main-wrapper main-wrapper-1">
+            <div class="navbar-bg"></div>
+
+            @include('admin.layouts.sidebar')
+
+            <!-- Main Content -->
+            <div class="main-content">
+                @yield('content')
+
+            </div>
+
+            <footer class="main-footer">
+                <div class="footer-left">
+                    Copyright &copy; 2024
+                </div>
+                <div class="footer-right">
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- General JS Scripts -->
+    <script src="{{ asset('admin/assets/modules/jquery.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/modules/popper.js') }}"></script>
+    <script src="{{ asset('admin/assets/modules/tooltip.js') }}"></script>
+    <script src="{{ asset('admin/assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/stisla.js') }}"></script>
+    <script src="{{ asset('frontend/js/toastr.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js') }}"></script>
+
+    <script src="{{ asset('admin/assets/modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
+
+    <!-- Page Specific JS File -->
+    <script src="{{ asset('admin/assets/js/page/forms-advanced-forms.js') }}"></script>
+
+    <script src="//cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Template JS File -->
+    <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/custom.js') }}"></script>
+
+    <script>
+        toastr.options.progressBar = true;
+
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                toastr.error("{{ $error }}")
+            @endforeach
+        @endif
+    </script>
+
+    <script>
+        $.uploadPreview({
+            input_field: "#image-upload", // Default: .image-upload
+            preview_box: "#image-preview", // Default: .image-preview
+            label_field: "#image-label", // Default: .image-label
+            label_default: "Choose File", // Default: Choose File
+            label_selected: "Change File", // Default: Change File
+            no_label: false, // Default: false
+            success_callback: null // Default: null
+        });
+
+        //Set csrf at ajax header
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).ready(function(e) {
+
+            $('body').on('click', '.delete-item', function(e) {
+                e.preventDefault()
+                let url = $(this).attr('href');
+
+                Swal.fire({
+                    title: "Are You Sure You Want to Delete?",
+                    text: "You can't take this back!",
+                    icon: "warning",
+                    showCancelButton: false,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        $.ajax({
+                            method: 'DELETE',
+                            url: url,
+                            data: {_token: "{{ csrf_token() }}"},
+                            success: function(response){
+                                if(response.status === 'success'){
+                                    toastr.success(response.message)
+
+                                    window.location.reload();
+                                }else if(response.status === 'error'){
+                                    toastr.error(response.message)
+                                }
+                            },
+                            error: function(error){
+                                console.error(error);
+                            }
+                        })
+
+                    }
+                });
+            })
+        })
+
+    </script>
+
+    @stack('scripts')
+
+</body>
+
+</html>

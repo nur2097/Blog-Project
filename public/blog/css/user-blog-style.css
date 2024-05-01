@@ -1,0 +1,81 @@
+body {
+    background-image: url('/blog/blog_images/background.jpg');
+    font-family: 'Raleway', sans-serif;
+
+}
+
+footer {
+    background-color: oldlace !important;
+ }
+
+.nav-select {
+    margin-left: 1116px !important;
+}
+
+.navbar-brand {
+    margin-left: 77px !important;
+}
+
+.create-blog{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+}
+
+.card-blog{
+    background-color: floralwhite;
+    margin-left: auto;
+    margin-right: auto;
+    height: 1248px;
+    border-radius: 30px;
+}
+
+.bottom{
+    margin-bottom: 13px;
+}
+
+
+.btn-blog {
+    border: 1px solid #9ea1a2;
+    border-radius: 10px;
+    padding: 5px 15px;
+    color: inherit;
+    background-color: darkorange;
+    text-decoration: none;
+}
+
+.btn-blog:hover {
+    background-color: darkorange;
+    color: #fff;
+}
+
+
+.fp_dash_personal_info button {
+    margin-top: 15px;
+}
+
+.fp_dash_personal_info h4 {
+    margin-top: 18px;
+    margin-left: 26px;
+    font-size: 25px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: var(--colorBlack);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fp_dash_personal_info h4 a {
+    font-size: 19px;
+    background: var(--colorPrimary);
+    color: var(--colorWhite);
+    font-weight: 600;
+    padding: 4px 15px;
+    cursor: pointer;
+    text-decoration: unset;
+    margin-right: 10px;
+}
+
+

@@ -1,0 +1,577 @@
+/* Custom Style Sheet */
+body {
+    background-color: aliceblue;
+    font-family: 'Raleway', sans-serif !important;
+}
+
+.font-raleway {
+    font-family: 'Raleway', sans-serif;
+}
+
+.font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.font-lato {
+    font-family: 'Lato', sans-serif;
+}
+
+
+/* Slide Setting*/
+.mnt {
+    margin-top: -134px;
+}
+
+/* Logo Setting */
+.logo {
+    height: 86px;
+}
+
+/* Search Setting*/
+
+.search-card {
+    height: 48px;
+    width: 780px;
+    margin-left: 238px;
+    border-radius: 25px;
+    background-color: rgb(246, 174, 40);
+}
+
+.search-icon {
+    color: rgb(255, 176, 49);
+}
+
+.material-symbols-outlined {
+    line-height: unset !important;
+    font-size: 20px;
+}
+
+.search-form {
+    margin-left: 52px;
+    margin-top: -12px;
+}
+
+.btn-search-response {
+    border: 1px solid #9ea1a2;
+    border-radius: 15px;
+    color: inherit;
+    text-decoration: none;
+    width: 18%;
+    height: 38px;
+    font-weight: 100;
+    margin-left: 0;
+    border-color: bisque;
+}
+
+.btn-search-response:hover {
+    background-color: rgb(120, 119, 118);
+    color: lightgray;
+}
+
+.search-select {
+    height: 38px;
+    border-radius: 20px;
+
+}
+
+.search-btn {
+    width: 375px;
+    border-radius: 20px;
+    color: gray;
+}
+
+/* Navbar Select */
+.nav-logo{
+    margin-left: -17px;
+}
+
+.nav-col{
+    margin-left: 900px;
+}
+
+.nav-select{
+    margin-left: 1000px;
+}
+
+.nav-image{
+    height: 40px;
+}
+
+.nav-dropdown{
+    background: transparent;
+}
+
+.dropdown-li{
+    color: gray !important;
+}
+
+.nav-collap{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: -25px;
+}
+
+.nav-collap:hover {
+    color: black;
+}
+
+.nav-login{
+    padding: 0;
+    margin: 0;
+    margin-right: 125px;
+}
+
+
+/* Navbar Part / Slider Part*/
+
+.trn {
+    background: transparent !important;
+    z-index: 99;
+    margin-top: 16px;
+}
+
+.user-trn {
+    background: transparent !important;
+    z-index: 99;
+    margin-bottom: 41px;
+    margin-top: 19px;
+}
+
+.navbar-brand {
+    margin-left: 100px;
+    margin-top: -5px;
+}
+
+.user-navbar {
+    height: 83px;
+    margin-left: 58px;
+    margin-top: -5px;
+}
+
+.hactive a {
+    border-bottom: 2px solid #fff;
+}
+
+.active a {
+    border-bottom: 2px solid azure;
+}
+
+.mgl {
+    margin-left: 30px;
+}
+
+.mrt option {
+    background: azure;
+    color: gray !important;
+    border-radius: 50px;
+    padding: 10px 25px !important;
+    width: 120px;
+    text-align: center;
+
+}
+
+.mrt option:hover {
+    background: darkgrey;
+    color: azure !important;
+    box-shadow: none;
+    border-bottom: 2px solid transparent;
+}
+
+.navbar-brand:hover {
+    border-bottom: 2px solid transparent !important;
+}
+
+/*  Section Part / Main Part */
+
+.categories ul {
+    list-style: none;
+}
+
+.categories ul li {
+    border-bottom: 1px solid #d3d3d3;
+}
+
+.categories ul li:last-child {
+    border-bottom: unset;
+}
+
+.categories ul li:hover {
+    background-color: #d3d3d3;
+}
+
+.categories ul li a, .swiper-authors a {
+    color: #9ea1a2;
+    text-decoration: none;
+}
+
+/* Swiper Slider */
+.swiper-most-popular, .swiper-youtube, .swiper-authors {
+    width: 100%;
+    /*height: 350px;*/
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+    display: block;
+}
+
+/* Flip-Card Part*/
+
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card {
+    background-color: transparent;
+    width: 300px;
+    height: 300px;
+    border: 1px solid #f1f1f1;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  }
+
+  /* This container is needed to position the front and back side */
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  /* Position the front and back side */
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+  }
+
+  /* Style the front side (fallback if image is missing) */
+  .flip-card-front {
+    background-color: #bbb;
+    color: black;
+  }
+
+  /* Style the back side */
+  .flip-card-back {
+    background-color: rgb(233, 170, 83);
+    color: rgb(236, 231, 231);
+    transform: rotateY(180deg);
+  }
+
+/* Article Page / Most Popular Part */
+.most-popular-author {
+    color: #5c636a;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.most-popular-author a {
+    color:#3a0202;
+    text-decoration: none;
+}
+
+.most-popular-author a:hover {
+    color:#ee8606;
+
+}
+
+.most-popular-title h4 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.most-popular-title h4 a {
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    color: inherit;
+}
+
+.most-popular-title h4 a:hover {
+    color: #ed9b37;
+}
+
+.most-popular-date {
+    font-size: 12px;
+    color: #3a0202;
+}
+
+/* Telegram Part */
+
+.telegram {
+    background-color: steelblue;
+}
+
+.telegram h4 {
+    letter-spacing: 0.03em;
+}
+
+.telegram p {
+    letter-spacing: 0.05em;
+}
+
+.telegram-btn {
+    background-color: lightskyblue;
+}
+
+.telegram-btn:hover {
+    background-color: skyblue;
+    color: #808183;
+}
+
+/* Youtube Part */
+.youtube-button {
+    height: 43px;
+}
+
+/* Footer Part*/
+
+.footer {
+    margin-top: 88px;
+    background-color: lightblue;
+    height: 214px;
+}
+
+.footer hr {
+    margin-bottom: 5px;
+    margin-top: 27px;
+}
+
+.footer-logo {
+    height: 20px !important;
+    width: 152px !important;
+    margin-bottom: 18px;
+}
+
+.footer-left {
+    margin-top: 17px;
+    margin-left: 45px;
+    color: black !important;
+}
+
+.footer-left a {
+    color: rgb(46, 38, 87) !important;
+    margin-right: 7px;
+}
+
+.footer-p {
+    margin-top: 3px;
+    margin-bottom: 0rem !important;
+}
+
+.footer-right {
+    margin-left: auto;
+    margin-right: 38px;
+    margin-top: -118px;
+    margin-bottom: 32px;
+}
+
+.footer-right a {
+    text-decoration: none;
+    color: rgb(46, 38, 87) !important;
+}
+
+.footer-copy {
+    margin-right: auto;
+    margin-left: auto;
+    color: grey;
+}
+
+/** About Us Part**/
+
+.about-card{
+    margin-left: auto;
+    margin-right: auto;
+    height: 840px;
+    background-color: floralwhite;
+    border-radius: 30px;
+}
+
+.about h2 {
+    margin: revert;
+    margin-left: 75px;
+    font-size: 27px;
+    font-weight: 600;
+}
+.about h4 {
+    margin-top: 20px;
+    margin-left: 90px;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.about p {
+    width: 809px;
+    margin: auto;
+    font-size: 17px;
+}
+
+
+/** User Dashboard Part*/
+.mb {
+    margin-bottom: 45px;
+}
+
+.ml {
+    margin-left: 300px;
+}
+
+.spn {
+    font-weight: 500;
+    color: black;
+}
+
+.spn:hover {
+    font-weight: 500;
+    color: black;
+}
+
+
+
+.blog-img {
+    float: inline-end;
+    width: 275px;
+    margin-left: 12px;
+}
+
+.swiper-blog-list {
+    width: 100%;
+    /*height: 350px;*/
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+    display: block;
+}
+
+.swiper-favorite-list {
+    width: 100%;
+    /*height: 350px;*/
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+    display: block;
+}
+
+.blog-btn {
+    color: #fff;
+    background-color: #f86f03;
+    border-color: orange;
+    width: 90px;
+}
+
+
+.blog-btn:hover {
+    color: #fff;
+    background-color: rgb(36, 28, 87);
+    border-color: rgb(46, 6, 120);
+}
+
+.user_blog {
+    font-size: 28px !important;
+    margin-bottom: 9px;
+}
+
+.user_create_blog {
+    font-size: 19px !important;
+}
+
+.user_change_password {
+    margin-top: 19px;
+}
+
+.user_password {
+    margin-left: 4px;
+    margin-bottom: 6px;
+}
+
+.logo-img {
+    height: 45px !important;
+    border-radius: 50%;
+}
+
+
+
+.fp__dashboard_menu a {
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s linear 0s;
+    background: none !important;
+    color: var(--colorBlack) !important;
+    border-radius: 0px !important;
+    border-bottom: 1px solid #d0d0d0 !important;
+    padding: 0px 0px !important;
+    -webkit-transition: all 0.3s linear 0s;
+    -moz-transition: all 0.3s linear 0s;
+    -ms-transition: all 0.3s linear 0s;
+    -o-transition: all 0.3s linear 0s;
+    text-transform: capitalize;
+}
+
+.fp__dashboard_menu a span {
+    display: inline-block;
+    transition: all 0.3s linear 0s;
+    -webkit-transition: all 0.3s linear 0s;
+    -moz-transition: all 0.3s linear 0s;
+    -ms-transition: all 0.3s linear 0s;
+    -o-transition: all 0.3s linear 0s;
+    width: 50px;
+    height: 50px;
+    background: var(--colorPrimary);
+    color: var(--colorWhite) !important;
+    text-align: center;
+    line-height: 50px;
+    margin-right: 10px;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .nav-link:hover {
+    background: #292b750a !important;
+}
+
+.fp__dashboard_menu a.active::after {
+    position: absolute;
+    content: "";
+    background: var(--colorPrimary);
+    width: 8px;
+    height: 50px;
+    top: 0;
+    right: -3px;
+    transition: all 0.3s linear 0s;
+    -webkit-transition: all 0.3s linear 0s;
+    -moz-transition: all 0.3s linear 0s;
+    -ms-transition: all 0.3s linear 0s;
+    -o-transition: all 0.3s linear 0s;
+}
+
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        margin-left: -80px;
+    }
+}
+
+
