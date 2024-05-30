@@ -122,59 +122,96 @@
                             <div class="response-body p-4 mt-5">
                                 <h3>Blog Comments</h3>
                                 <hr class="mb-4">
-                                <form action="">
-                                    <div class="article-authors article-response-wrapper">
-                                        <h4 class="comment-h4">{{ count($comments) }} Yorum</h4>
-                                        @foreach ($comments as $comment)
-                                            <div class=" bg-white p-2 mt-3 d-flex align-items-center shadow-sm">
-                                                <img src="{{ asset($comment->user->avatar) }}" class="comment-img">
-                                                <div class="px-3 comment">
-                                                    <div class="d-flex">
-                                                        <h4 class="comment-h4">{{ $comment->user->name }}</h4>
+                                <div class="article-authors article-response-wrapper">
+
+                                    @foreach ($blog->comments as $comment)
+                                        <div class="bg-white p-2 mt-3 d-flex align-items-center shadow-sm">
+                                            <img src="{{ asset($comment->user->avatar) }}" class="comment-img">
+                                            <div class="px-3 comment">
+                                                <div class="d-flex">
+                                                    <h4 class="comment-h4">{{ $comment->user->name }}</h4>
+                                                    <span
+                                                        class="text-secondary comment-date">{{ date('d M Y', strtotime($comment->created_at)) }}</span>
+                                                </div>
+                                                <p class="text-secondary comment-p">{{ $comment->comment }}</p>
+
+                                                <div
+                                                    class="text-end d-flex align-items-center justify-content-between comment-response">
+                                                    <div class="d-flex align-items-center">
+                                                        @php
+                                                            $commentLike = $comment->commentLikes
+                                                                ->where('user_id', auth()->id())
+                                                                ->first();
+                                                        @endphp
+                                                        <a href="javascript:void(0)" class="like-comment"
+                                                            data-id="{{ $comment->id }}"
+                                                            @if (!is_null($commentLike)) style="color: darkorange" @endif>
+                                                            <span class="material-symbols-outlined">favorite</span></a>
                                                         <span
-                                                            class="text-secondary comment-date">{{ date('d M Y', strtotime($comment->created_at)) }}</span>
+                                                            id="commentLikeCount-{{ $comment->id }}">{{ $comment->like_count }}</span>
                                                     </div>
-                                                    <p class="text-secondary comment-p">{{ $comment->comment }}</p>
 
-                                                    <div
-                                                        class="text-end d-flex align-items-center justify-content-between comment-response">
-                                                        <div class="d-flex align-items-center">
-                                                            @php
-                                                                $commentLike = $comment->commentLikes
-                                                                    ->where('user_id', auth()->id())
-                                                                    ->first();
-                                                            @endphp
-                                                            <a href="javascript:void(0)" class="like-comment"
-                                                                data-id="{{ $comment->id }}"
-                                                                @if (!is_null($commentLike)) style="color: darkorange" @endif>
-                                                                <span class="material-symbols-outlined">favorite</span></a>
-                                                            <span
-                                                                id="commentLikeCount-{{ $comment->id }}">{{ $comment->like_count }}</span>
-                                                        </div>
-                                                        <div class="comment-btn">
-                                                            <a href="javascript:void(0)"
-                                                                class="btn-response btnArticleResponse"
-                                                                data-id="{{ $comment->id }}">Respond</a>
-                                                        </div>
-
+                                                    <div class="comment-btn">
+                                                        <a href="javascript:void(0)" class="btn-response btnArticleResponse"
+                                                            data-id="{{ $comment->id }}">Respond</a>
                                                     </div>
+
                                                 </div>
                                             </div>
-                                        @endforeach
+                                        </div>
 
-                                        @if ($comments->hasPages())
-                                            <div class="pagination mt-60">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        {{ $comments->links() }}
+                                        @if ($comment->children)
+                                            <div class="article-authors article-response-wrapper">
+                                                @foreach ($comment->children as $child)
+                                                    <div
+                                                        class="article-response-comment-wrapper bg-white p-2 mt-3 d-flex align-items-center shadow-sm">
+                                                        <img src="{{ asset($child->user->avatar) }}" class="comment-img">
+                                                        <div class="px-3 comment">
+                                                            <div class="d-flex">
+                                                                <h4 class="comment-h4">{{ $child->user->name }}</h4>
+                                                                <span
+                                                                    class="text-secondary comment-response-date">{{ date('d M Y', strtotime($child->created_at)) }}</span>
+                                                            </div>
+                                                            <p class="text-secondary comment-p"><a href="" class="comment-response-p">{{ $comment->user->name }}</a>,
+                                                                {{ $child->comment }}</p>
+
+                                                            <div
+                                                                class="text-end d-flex align-items-center justify-content-between comment-response">
+                                                                <div class="d-flex align-items-center">
+                                                                    @php
+                                                                        $commentLike = $child->commentLikes
+                                                                            ->where('user_id', auth()->id())
+                                                                            ->first();
+                                                                    @endphp
+                                                                    <a href="javascript:void(0)" class="like-comment"
+                                                                        data-id="{{ $child->id }}"
+                                                                        @if (!is_null($commentLike)) style="color: darkorange" @endif>
+                                                                        <span class="material-symbols-outlined"
+                                                                            style="margin-left: 50px;">favorite</span>
+                                                                    </a>
+                                                                    <span
+                                                                        id="commentLikeCount-{{ $child->id }}">{{ $child->like_count }}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                @endforeach
                                             </div>
                                         @endif
-                                    </div>
-                                </form>
-                            </div>
+                                    @endforeach
 
+
+                                    @if ($blogs->isEmpty())
+                                        <h5 class="text-center" style="color: darkgray;">There are no comments for this blog yet. You can create the first comment!</h5>
+                                    @endif
+
+                                    @if ($blogs->hasPages())
+                                        <div class="pagination d-flex justify-content-center mt-60">
+                                            {{ $blogs->links() }}
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
                         </section>
 
                         <section class="article-responses mt-4">
@@ -182,13 +219,15 @@
                                 style="display: none">
                                 <form action="{{ route('blogs.comment.store', $blog->id) }}" method="POST">
                                     @csrf
+                                    <input type="hidden" name="parent_id" id="comment_parent_id"
+                                        value="{{ null }}">
                                     <div class="row">
                                         <div class="col-12">
                                             <h5>Comment</h5>
                                             <hr>
                                         </div>
                                         <div class="col-12 mt-3">
-                                            <textarea name="comment" cols="30" rows="5" class="form-control" placeholder="Mesajınız"></textarea>
+                                            <textarea name="comment" cols="30" rows="5" class="form-control" placeholder="Your message"></textarea>
                                         </div>
                                         <div class="col-md-4">
                                             <button class="article_btn_response align-items-center d-flex mt-3">
@@ -213,12 +252,13 @@
 
                         <ul class="list-group m-0">
                             @foreach ($categories as $category)
-                            @if ($category->blogs_count >= 1)
-                                <li class="px-3 py-3">
-                                    <a href="{{ route('blogs.category', ['slug' => $category->slug]) }}">{{ $category->name }}
-                                        <span class="text-warning float-end me-3">{{ $category->blogs_count }}</span></a>
-                                </li>
-                            @endif
+                                @if ($category->blogs_count >= 1)
+                                    <li class="px-3 py-3">
+                                        <a href="{{ route('blogs.category', ['slug' => $category->slug]) }}">{{ $category->name }}
+                                            <span
+                                                class="text-warning float-end me-3">{{ $category->blogs_count }}</span></a>
+                                    </li>
+                                @endif
                             @endforeach
                         </ul>
                     </section>

@@ -214,7 +214,12 @@
 }
 
 .comment-date {
-    margin-left: 640px;
+    margin-left: 654px;
+    font-size: 14px;
+}
+
+.comment-response-date {
+    margin-left: 583px;
     font-size: 14px;
 }
 
@@ -224,6 +229,13 @@
 
 .comment-p {
     font-size: 17px !important;
+}
+
+.comment-response-p {
+    font-size: 17px !important;
+    font-weight: 600;
+    color: steelblue;
+    text-decoration: none;
 }
 
 .comment-img {

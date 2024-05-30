@@ -113,6 +113,9 @@
         </div>
     </footer>
 
+    <div class="position-fixed scroll-to-top btn btn-secondary btn-circle">
+        <i class="fa fa-chevron-up"></i>
+    </div>
 
     <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
@@ -175,6 +178,10 @@
             });
 
             $('.btnArticleResponse').click(function() {
+                let commentID = $(this).data('id');
+
+                $('#comment_parent_id').val(commentID);
+
                 $('.response-form').toggle();
 
                 $('html, body').animate({
@@ -209,7 +216,7 @@
                         }
                     })
                 @else
-                    toastr.error("You cannot add it to your favorites without logging in!")
+                    toastr.error("Please log in first to add to favorites!")
                 @endif
             });
 
@@ -239,10 +246,24 @@
                         }
                     })
                 @else
-                    toastr.error("You cannot add it to your favorites without logging in!")
+                    toastr.error("Please log in first to like the comment!")
                 @endif
             });
 
+            $(window).scroll(function (){
+                if($(window).scrollTop() > 250){
+                    $(".scroll-to-top").css("display", "block");
+                }
+                else {
+                    $(".scroll-to-top").css("display", "none");
+                }
+            });
+
+            $(".scroll-to-top").click(function(){
+                $("html, body").animate({
+                    scrollTop:$("body").offset().top
+                }, 50);
+            });
 
         });
     </script>

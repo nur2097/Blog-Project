@@ -1,7 +1,6 @@
 @extends('blog.layouts.master')
 
 @section('content')
-    {{-- {{ asset('blog/blog_images/pexels.jpg') }}- mnt d-none d-md-block-}}
     {{-- Slider Part --}}
 
     <div id="carouselExampleSlidesOnly" class="carousel slide mnt" data-bs-ride="carousel">
